@@ -15,6 +15,8 @@
  */
 package org.springframework.data.relational.core.sql;
 
+import static org.springframework.data.relational.core.sql.UpdateBuilder.*;
+
 import java.util.Collection;
 
 import org.springframework.data.relational.core.sql.DeleteBuilder.DeleteWhere;
@@ -77,35 +79,14 @@ public abstract class StatementBuilder {
 	}
 
 	/**
-	 * Creates a new {@link DeleteBuilder} and declares the {@link Table} to delete from.
-	 *
-	 * @param table the table to delete from.
-	 * @return {@code this} builder.
-	 * @see Table#columns(String...)
-	 */
-	public static DeleteWhere delete(Table table) {
-		return Delete.builder().from(table);
-	}
-
-	/**
-	 * Creates a a new {@link DeleteBuilder}.
-	 *
-	 * @return the new {@link DeleteBuilder}.
-	 * @see DeleteBuilder
-	 */
-	public static DeleteBuilder delete() {
-		return Delete.builder();
-	}
-
-	/**
-	 * Creates a a new {@link InsertBuilder} and declare the {@link Table} to insert into.
+	 * Creates a new {@link InsertBuilder} and declare the {@link Table} to insert into.
 	 *
 	 * @param table the table to insert into.
-	 * @return {@code this} builder.
-	 * @see Table#columns(String...)
+	 * @return the new {@link InsertBuilder}.
+	 * @see Table#create(String)
 	 */
 	public static InsertIntoColumnsAndValues insert(Table table) {
-		return Insert.builder().into(table);
+		return insert().into(table);
 	}
 
 	/**
@@ -116,6 +97,48 @@ public abstract class StatementBuilder {
 	 */
 	public static InsertBuilder insert() {
 		return Insert.builder();
+	}
+
+	/**
+	 * Creates a new {@link UpdateBuilder} and declare the {@link Table} for the update.
+	 *
+	 * @param table the table for the update.
+	 * @return the new {@link UpdateBuilder}.
+	 * @see Table#create(String)
+	 */
+	public static UpdateAssign update(Table table) {
+		return update().table(table);
+	}
+
+	/**
+	 * Creates a new {@link UpdateBuilder}.
+	 *
+	 * @return the new {@link UpdateBuilder}.
+	 * @see UpdateBuilder
+	 */
+	public static UpdateBuilder update() {
+		return Update.builder();
+	}
+
+	/**
+	 * Creates a new {@link DeleteBuilder} and declares the {@link Table} to delete from.
+	 *
+	 * @param table the table to delete from.
+	 * @return {@code this} builder.
+	 * @see Table#columns(String...)
+	 */
+	public static DeleteWhere delete(Table table) {
+		return delete().from(table);
+	}
+
+	/**
+	 * Creates a new {@link DeleteBuilder}.
+	 *
+	 * @return the new {@link DeleteBuilder}.
+	 * @see DeleteBuilder
+	 */
+	public static DeleteBuilder delete() {
+		return Delete.builder();
 	}
 
 	private StatementBuilder() {}

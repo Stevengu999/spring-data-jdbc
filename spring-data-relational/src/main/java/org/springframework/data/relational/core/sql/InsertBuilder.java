@@ -18,7 +18,7 @@ package org.springframework.data.relational.core.sql;
 import java.util.Collection;
 
 /**
- * Entry point to construct a {@link Insert} statement.
+ * Entry point to construct an {@link Insert} statement.
  *
  * @author Mark Paluch
  * @since 1.1

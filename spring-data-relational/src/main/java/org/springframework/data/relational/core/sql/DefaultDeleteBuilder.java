@@ -26,10 +26,10 @@ import org.springframework.util.Assert;
  */
 class DefaultDeleteBuilder implements DeleteBuilder, DeleteBuilder.DeleteWhereAndOr, DeleteBuilder.DeleteWhere {
 
-	private @Nullable Table from;
+	private Table from;
 	private @Nullable Condition where;
 
-	/* 
+	/*
 	 * (non-Javadoc)
 	 * @see org.springframework.data.relational.core.sql.DeleteBuilder#from(org.springframework.data.relational.core.sql.Table)
 	 */
@@ -42,7 +42,7 @@ class DefaultDeleteBuilder implements DeleteBuilder, DeleteBuilder.DeleteWhereAn
 		return this;
 	}
 
-	/* 
+	/*
 	 * (non-Javadoc)
 	 * @see org.springframework.data.relational.core.sql.DeleteBuilder.DeleteWhere#where(org.springframework.data.relational.core.sql.Condition)
 	 */
@@ -54,7 +54,7 @@ class DefaultDeleteBuilder implements DeleteBuilder, DeleteBuilder.DeleteWhereAn
 		return this;
 	}
 
-	/* 
+	/*
 	 * (non-Javadoc)
 	 * @see org.springframework.data.relational.core.sql.DeleteBuilder.DeleteWhereAndOr#and(org.springframework.data.relational.core.sql.Condition)
 	 */
@@ -66,7 +66,7 @@ class DefaultDeleteBuilder implements DeleteBuilder, DeleteBuilder.DeleteWhereAn
 		return this;
 	}
 
-	/* 
+	/*
 	 * (non-Javadoc)
 	 * @see org.springframework.data.relational.core.sql.DeleteBuilder.DeleteWhereAndOr#or(org.springframework.data.relational.core.sql.Condition)
 	 */
@@ -78,7 +78,7 @@ class DefaultDeleteBuilder implements DeleteBuilder, DeleteBuilder.DeleteWhereAn
 		return this;
 	}
 
-	/* 
+	/*
 	 * (non-Javadoc)
 	 * @see org.springframework.data.relational.core.sql.DeleteBuilder.BuildDelete#build()
 	 */

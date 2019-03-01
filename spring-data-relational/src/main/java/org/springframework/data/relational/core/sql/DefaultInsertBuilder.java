@@ -20,7 +20,6 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
-import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
@@ -32,11 +31,11 @@ import org.springframework.util.Assert;
 class DefaultInsertBuilder
 		implements InsertBuilder, InsertBuilder.InsertIntoColumnsAndValuesWithBuild, InsertBuilder.InsertValuesWithBuild {
 
-	private @Nullable Table into;
+	private Table into;
 	private List<Column> columns = new ArrayList<>();
 	private List<Expression> values = new ArrayList<>();
 
-	/* 
+	/*
 	 * (non-Javadoc)
 	 * @see org.springframework.data.relational.core.sql.InsertBuilder#into(org.springframework.data.relational.core.sql.Table)
 	 */
@@ -49,7 +48,7 @@ class DefaultInsertBuilder
 		return this;
 	}
 
-	/* 
+	/*
 	 * (non-Javadoc)
 	 * @see org.springframework.data.relational.core.sql.InsertBuilder.InsertIntoColumnsAndValues#column(org.springframework.data.relational.core.sql.Column)
 	 */
@@ -63,7 +62,7 @@ class DefaultInsertBuilder
 		return this;
 	}
 
-	/* 
+	/*
 	 * (non-Javadoc)
 	 * @see org.springframework.data.relational.core.sql.InsertBuilder.InsertIntoColumnsAndValues#columns(org.springframework.data.relational.core.sql.Column[])
 	 */
@@ -75,7 +74,7 @@ class DefaultInsertBuilder
 		return columns(Arrays.asList(columns));
 	}
 
-	/* 
+	/*
 	 * (non-Javadoc)
 	 * @see org.springframework.data.relational.core.sql.InsertBuilder.InsertIntoColumnsAndValues#columns(java.util.Collection)
 	 */
@@ -89,7 +88,7 @@ class DefaultInsertBuilder
 		return this;
 	}
 
-	/* 
+	/*
 	 * (non-Javadoc)
 	 * @see org.springframework.data.relational.core.sql.InsertBuilder.InsertIntoColumnsAndValuesWithBuild#value(org.springframework.data.relational.core.sql.Expression)
 	 */
@@ -103,7 +102,7 @@ class DefaultInsertBuilder
 		return this;
 	}
 
-	/* 
+	/*
 	 * (non-Javadoc)
 	 * @see org.springframework.data.relational.core.sql.InsertBuilder.InsertIntoColumnsAndValuesWithBuild#values(org.springframework.data.relational.core.sql.Expression[])
 	 */
@@ -115,7 +114,7 @@ class DefaultInsertBuilder
 		return values(Arrays.asList(values));
 	}
 
-	/* 
+	/*
 	 * (non-Javadoc)
 	 * @see org.springframework.data.relational.core.sql.InsertBuilder.InsertIntoColumnsAndValuesWithBuild#values(java.util.Collection)
 	 */
@@ -129,7 +128,7 @@ class DefaultInsertBuilder
 		return this;
 	}
 
-	/* 
+	/*
 	 * (non-Javadoc)
 	 * @see org.springframework.data.relational.core.sql.InsertBuilder.BuildInsert#build()
 	 */

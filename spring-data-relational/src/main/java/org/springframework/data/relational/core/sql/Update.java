@@ -16,27 +16,28 @@
 package org.springframework.data.relational.core.sql;
 
 /**
- * AST for a {@code DELETE} statement. Visiting order:
+ * AST for aa {@code UPDATE} statement. Visiting order:
  * <ol>
  * <li>Self</li>
- * <li>{@link Table FROM tables} clause</li>
+ * <li>{@link Table table}</li>
+ * <li>{@link Assignments assignments}</li>
  * <li>{@link Where WHERE} condition</li>
  * </ol>
  *
  * @author Mark Paluch
  * @since 1.1
  * @see StatementBuilder
- * @see DeleteBuilder
+ * @see SelectBuilder
  * @see SQL
  */
-public interface Delete extends Segment, Visitable {
+public interface Update extends Segment, Visitable {
 
 	/**
-	 * Creates a new {@link DeleteBuilder}.
+	 * Creates a new {@link UpdateBuilder}.
 	 *
-	 * @return a new {@link DeleteBuilder}.
+	 * @return a new {@link UpdateBuilder}.
 	 */
-	static DeleteBuilder builder() {
-		return new DefaultDeleteBuilder();
+	static UpdateBuilder builder() {
+		return new DefaultUpdateBuilder();
 	}
 }

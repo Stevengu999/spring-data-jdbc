@@ -16,27 +16,27 @@
 package org.springframework.data.relational.core.sql;
 
 /**
- * AST for a {@code DELETE} statement. Visiting order:
- * <ol>
- * <li>Self</li>
- * <li>{@link Table FROM tables} clause</li>
- * <li>{@link Where WHERE} condition</li>
- * </ol>
+ * Factory for common {@link Assignment}s.
  *
  * @author Mark Paluch
  * @since 1.1
- * @see StatementBuilder
- * @see DeleteBuilder
  * @see SQL
+ * @see Expressions
+ * @see Functions
  */
-public interface Delete extends Segment, Visitable {
+public abstract class Assignments {
 
 	/**
-	 * Creates a new {@link DeleteBuilder}.
+	 * Creates a {@link AssignValue value} assignment to a {@link Column} given an {@link Expression}.
 	 *
-	 * @return a new {@link DeleteBuilder}.
+	 * @param target target column, must not be {@literal null}.
+	 * @param value assignment value, must not be {@literal null}.
+	 * @return the {@link AssignValue}.
 	 */
-	static DeleteBuilder builder() {
-		return new DefaultDeleteBuilder();
+	public static AssignValue value(Column target, Expression value) {
+		return AssignValue.create(target, value);
 	}
+
+	// Utility constructor.
+	private Assignments() {}
 }
