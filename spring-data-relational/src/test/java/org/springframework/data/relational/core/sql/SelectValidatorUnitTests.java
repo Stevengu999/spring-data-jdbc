@@ -103,7 +103,7 @@ public class SelectValidatorUnitTests {
 		assertThatThrownBy(() -> {
 			Select.builder().select(bah).from(foo).where(Conditions.in(bar, subselect)).build();
 		}).isInstanceOf(IllegalStateException.class)
-				.hasMessageContaining("Required table [bah] by a SELECT column not imported by FROM [foo] or JOIN []");
+				.hasMessageContaining("Required table [floo] by a SELECT column not imported by FROM [foo] or JOIN []");
 	}
 
 }

@@ -17,6 +17,7 @@ package org.springframework.data.relational.core.sql;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.Stack;
 
 /**
  * Validator for {@link Select} statements.
@@ -28,6 +29,8 @@ import java.util.Set;
  * @since 1.1
  */
 class SelectValidator extends AbstractImportValidator {
+
+	private final Stack<Select> selects = new Stack<>();
 
 	private int selectFieldCount;
 	private Set<Table> requiredBySelect = new HashSet<>();
@@ -76,6 +79,14 @@ class SelectValidator extends AbstractImportValidator {
 	@Override
 	public void enter(Visitable segment) {
 
+		if (segment instanceof Select) {
+			selects.push((Select) segment);
+		}
+
+		if (selects.size() > 1) {
+			return;
+		}
+
 		super.enter(segment);
 
 		if (segment instanceof AsteriskFromTable && parent instanceof Select) {
@@ -117,5 +128,19 @@ class SelectValidator extends AbstractImportValidator {
 				}
 			});
 		}
+	}
+
+	@Override
+	public void leave(Visitable segment) {
+
+		if (segment instanceof Select) {
+			selects.remove(segment);
+		}
+
+		if (selects.size() > 1) {
+			return;
+		}
+
+		super.leave(segment);
 	}
 }

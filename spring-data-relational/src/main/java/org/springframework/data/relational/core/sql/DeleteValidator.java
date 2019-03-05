@@ -15,6 +15,8 @@
  */
 package org.springframework.data.relational.core.sql;
 
+import org.springframework.lang.Nullable;
+
 /**
  * Validator for {@link Delete} statements.
  * <p/>
@@ -24,6 +26,8 @@ package org.springframework.data.relational.core.sql;
  * @since 1.1
  */
 class DeleteValidator extends AbstractImportValidator {
+
+	private @Nullable Select selectFilter;
 
 	public static void validate(Delete select) {
 		new DeleteValidator().doValidate(select);
@@ -39,5 +43,31 @@ class DeleteValidator extends AbstractImportValidator {
 						String.format("Required table [%s] by a WHERE predicate not imported by FROM %s", table, from));
 			}
 		}
+	}
+
+	@Override
+	public void enter(Visitable segment) {
+
+		if (selectFilter != null) {
+			return;
+		}
+
+		if (segment instanceof Select) {
+			this.selectFilter = (Select) segment;
+			return;
+		}
+
+		super.enter(segment);
+	}
+
+	@Override
+	public void leave(Visitable segment) {
+
+		if (this.selectFilter == segment) {
+			this.selectFilter = null;
+			return;
+		}
+
+		super.leave(segment);
 	}
 }
